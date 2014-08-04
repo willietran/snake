@@ -17,6 +17,9 @@ urlpatterns = patterns('',
     url(r'^register/$', 'snake.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+
+    # Save Game
+    url(r'^save/$', 'snake.views.save', name='save'),
 )
 
 if settings.DEBUG:

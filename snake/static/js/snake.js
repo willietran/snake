@@ -90,6 +90,23 @@ $(document).ready(function () {
        canvasContext.fillText("GAME OVER", 150, 200);
        $('#startGame').text("Play Again");
 
+       var gameInfo = {
+           'game': "s", 'score': score
+       };
+
+       gameInfo = JSON.stringify(gameInfo);
+       $.ajax({
+           url:'/save/',
+           type:'POST',
+           dataType:'json',
+           data: gameInfo,
+           success: function(response) {
+               console.log(response)
+           },
+           error: function(response) {
+               console.log(response)
+           }
+       })
        }
 
 
