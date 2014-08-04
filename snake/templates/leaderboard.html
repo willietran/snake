@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Leaderboard</h1>
+<div class="leaderboard">
+    <ol>
+    {% for score in high_score %}
+        <li>
+            <p>Game: {{ score.game }}</p>
+            <p>Player: {{ score.player }}</p>
+            <p>Score: {{ score.score }}</p>
+            <p>Date: {{ score.date }}</p>
+        </li>
+    {% endfor %}
+    </ol>
+</div>
+{% endblock %}

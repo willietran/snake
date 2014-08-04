@@ -66,3 +66,10 @@ def save(request):
         }
 
         return HttpResponse(json.dumps(save_info), content_type='application/json')
+
+
+def leaderboard(request):
+    if request.method == "GET":
+        high_score = Score.objects.all().order_by('-score')
+        data = {'high_score': high_score}
+        return render(request, 'leaderboard.html', data)

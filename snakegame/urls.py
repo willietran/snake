@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     # Save Game
     url(r'^save/$', 'snake.views.save', name='save'),
     url(r'^profile/$', 'snake.views.profile', name='profile'),
+    url(r'^leaderboard/$', 'snake.views.leaderboard', name='leaderboard'),
 )
 
 if settings.DEBUG:
