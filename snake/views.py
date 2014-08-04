@@ -1,6 +1,7 @@
 import json
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.db.models import Max
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -15,7 +16,19 @@ def home(request):
 
 @login_required
 def snake(request):
-    return render(request, 'snake.html')
+    if request.method == "GET":
+        high_score = Score.objects.filter(player=request.user)
+        highest_score = high_score.aggregate(Max('score'))
+        data = {'high_score': high_score, 'highest_score': highest_score}
+        return render(request, 'snake.html', data)
+
+
+def profile(request):
+    if request.method == 'GET':
+        high_score = Score.objects.filter(player=request.user)
+        highest_score = high_score.aggregate(Max('score'))
+        data = {'high_score': high_score, 'highest_score': highest_score}
+        return render(request, 'profile.html', data)
 
 
 # Registration view

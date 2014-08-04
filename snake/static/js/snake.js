@@ -4,6 +4,30 @@
 
 $(document).ready(function () {
 
+    $.ajax({
+        url:'/view_scores/',
+        type: 'GET',
+        dataType: 'html',
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(response) {
+            console.log("error");
+        }
+    });
+
+    $.ajax({
+        url:'/snake/',
+        type: 'GET',
+        dataType: 'html',
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(response) {
+            console.log("error");
+        }
+    });
+
     // Let's set up some variables to save the canvas elements and properties
     var canvas = $("#canvas")[0];
     var canvasContext = canvas.getContext("2d");

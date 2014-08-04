@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>{{ user }}</h1>
+<h4>Highest Score: {{ highest_score }}</h4>
+<hr>
+{% for score in high_score %}
+    <div class="score">
+        <p>Score: {{ score }}</p>
+        <p>Score Date: {{ score.date }}</p>
+        <p>Game: {{ score.game }}</p>
+        <hr>
+    </div>
+{% endfor %}
+</body>
+</html>

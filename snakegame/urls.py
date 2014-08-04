@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 
     # Save Game
     url(r'^save/$', 'snake.views.save', name='save'),
+    url(r'^profile/$', 'snake.views.profile', name='profile'),
 )
 
 if settings.DEBUG:
