@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SNAKE! HISS!!!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="{% static "js/snake.js" %}" type="text/javascript"></script>
+
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+
+
+<!--
+******************************
+       NAVIGATION BAR
+******************************
+-->
+
+<nav id="navigation" class="navbar navbar-default transparent navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><h4>DA GAYMES</h4></a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    {% if user.is_authenticated %}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle nav-username" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"> {{ request.user.username }}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">View Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li class="divider"></li>
+          </ul>
+      </ul>
+    </div>
+    {% else %}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" id="navigation-login" class="navigation-login" data-toggle="modal" data-target=".bs-example-modal-sm">Login</a></li>
+        <li><a href="#" class="navigation-register" data-toggle="modal" data-target=".register-modal-lg">Register</a></li>
+      </ul>
+    </div>
+    {% endif %}<!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!--
+******************************
+        LOGIN MODAL
+******************************
+-->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content loginModal">
+      <form method="post" action="/login/">
+        {% csrf_token %}
+        <input id="id_username" maxlength="245" name="username" type="text" class="form-control" placeholder="Username" required autofocus>
+        <input id="id_password" name="password" type="password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--
+******************************
+     CREATE ACCOUNT MODAL
+******************************
+-->
+
+<div class="modal fade register-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content registerModal">
+      <form method="post" action="/register/">
+        {% csrf_token %}
+        <div class="userName">
+            <h2 class="form-signin-heading header-register">Pick Your Username</h2>
+            <h4 class="subtitle-register">Hey there! Lets make a username, so we know what to call you</h4>
+            <input id="id_email" maxlength="30" name="email" type="email" placeholder="Email" class="form-control">
+            <input id="id_username" maxlength="30" name="username" type="text" placeholder="Username" class="form-control">
+            <input id="id_password1" name="password1" type="password" placeholder="Password" class="form-control">
+            <input id="id_password2" name="password2" type="password" placeholder="Confirm Password" class="form-control">
+            <button class="btn btn-lg btn-primary btn-block doneButton" type="submit">Done!</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

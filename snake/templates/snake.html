@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <meta charset="UTF-8">
+    <title>SNAKE! HISS!!!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="{% static "js/snake.js" %}" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/snake.css' %}">
+{% endblock %}
+{% block content %}
+    <center>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <br>
+        <button style="text-align: center; margin: auto;" id="startGame">Test Your Might</button>
+        <button style="text-align: center; margin: auto;" id="slowSpeed">Slow Speed</button>
+        <button style="text-align: center; margin: auto;" id="normalSpeed">Normal Speed</button>
+        <button style="text-align: center; margin: auto;" id="fastSpeed">Fast Speed</button>
+    </center>
+
+    <div id="score"></div>
+{% endblock %}
