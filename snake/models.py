@@ -20,3 +20,6 @@ class Score(models.Model):
 
     def __unicode__(self):
         return u"{}".format(self.score)
+    #
+    # def get_highest_score(self):
+    #     score =

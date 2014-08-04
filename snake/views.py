@@ -1,7 +1,7 @@
 import json
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.db.models import Max
+from django.db.models import Max, Avg
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -25,9 +25,10 @@ def snake(request):
 
 def profile(request):
     if request.method == 'GET':
-        high_score = Score.objects.filter(player=request.user)
+        high_score = Score.objects.filter(player=request.user).order_by('-date')
         highest_score = high_score.aggregate(Max('score'))
-        data = {'high_score': high_score, 'highest_score': highest_score}
+        average_score = high_score.aggregate(Avg('score'))
+        data = {'high_score': high_score, 'highest_score': highest_score, 'average_score': average_score}
         return render(request, 'profile.html', data)
 
 
