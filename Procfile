@@ -1,0 +1,1 @@
+web: gunicorn snakegame.wsgi --log-file -

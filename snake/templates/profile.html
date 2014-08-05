@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>{{ user }}</h1>
 <h3>Highest Score: {{ highest_score.score__max }}</h3>
 <h4>Your Average Score: {{ average_score.score__avg }}</h4>
@@ -17,5 +13,4 @@
         <hr>
     </div>
 {% endfor %}
-</body>
-</html>
+{% endblock %}
